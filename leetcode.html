@@ -3,9 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>leetcode</title>
+    <title>Editorials</title>
+    <link rel="stylesheet" href="lc.css">
 </head>
 <body>
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>S.No</th> -->
+                     <th>Problem number</th>
+                    <th>Problem Name</th>
+                    <th>Problem Link</th>
+                    <th>Solution</th>
+                    <th>Difficulty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td>2</td> -->
+                     <td>1</td>
+                     <td>Two Sum</td>
+                     <td><a href="https://leetcode.com/problems/two-sum/description/">TS</a></td>
+                     <td><a href="#TS">TS sol</a></td>
+                     <td>Easy</td>                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <article id="TS">
+        <h1>Two Sum</h1>
+       <p>The given problem says that there are n numbers present in an array and a target. We need to find two numbers which sums up target and return indexes of two numbers.</p><br>
+       <p>Let us take an example of an array arr[] = [4,3,9,6,2] and a target element 11.</p><br>
+       <p>From this array elements we can say that index at 2 and index at 4 sums up to 11. arr[2] + arr[4] = 11. So we need to return indexes 2 and 4.</p><br>
+       <p>If we need to return boolean value then we can do this with two pointers approach. But the given solution should return indexes. So I will take a Hash Map and store the indexes of each element. Keys of HashMap are elements and values are indexes.</p><br>
+       
+    <p>I will iterate through array and check whether difference between array element and target is exit in map or not. If the difference is present then I will return current index and difference's index.</p><br>
+    <p>At index 0, element is 4 is present. I will calculate difference between element(4) and target(11) which is 7. Currently, My HashMap is empty so i will add element 4 and value as 0.</p><br>
+    <div class="kv">
+        <table>
+            <thead>
+                <th>Keys</th>
+                <th>Values</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>At index 1, element 3 is present. I will calculate difference between element(3) and target(11) which is 8. Currently, My HashMap is not empty so I will check whether 8 is present or not. 8 is not present in map so I will add element 3 and index 1 as key.  </p><br>
+    <div class="kv">
+        <table>
+            <thead>
+                <th>Keys</th>
+                <th>Values</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>At index 2, element 9 is present. I will calculate difference between element(9) and target(11) which is 2. Currently, My HashMap is not empty so I will check whether 2 is present or not. 8 is not present in map so I will add element 9 and index 2 as key.  </p><br>
+    <div class="kv">
+        <table>
+            <thead>
+                <th>Keys</th>
+                <th>Values</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>At index 3, element 6 is present. I will calculate difference between element(6) and target(11) which is 5. Currently, My HashMap is not empty so I will check whether 5 is present or not. 6 is not present in map so I will add element 6 and index 3 as key.</p><br>
+    <div class="kv">
+        <table>
+            <thead>
+                <th>Keys</th>
+                <th>Values</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>At index 4, element 2 is present. I will calculate difference between element(2) and target(11) which is 9. Currently, My HashMap is not empty so I will check whether 9 is present or not. 9 is present in map so I will return an array with indexes 2 and 4.  </p><br>
+    <p>Time Complexity : O(n)</p>
+    <p>Space Complexity : O(n)</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
     
+        <div id="java-code" class="code-box">
+            <strong>Java Code:</strong>
+            <code>
+                class Solution {
+                    public int[] twoSum(int[] nums, int target) {
+                        int ans[]=new int[2];
+                        HashMap&lt;Integer,Integer> x=new HashMap&lt;>();
+                        for(int i=0;i&lt;nums.length;i++){
+                            int diff = target - nums[i];
+                            if(x.containsKey(diff)){
+                                ans[0] = x.get(diff);
+                                ans[1] = i;
+                                return ans;
+                            }
+                            x.put(nums[i],i);
+                        }
+                        return -1;
+                    }
+                }
+            </code>
+        </div>
+    
+        <div id="python-code" class="code-box">
+            <strong>Python Code:</strong>
+            <code>
+                class Solution:
+                    def twoSum(self, nums: List[int], target: int) -> List[int]:
+                        ans=[]
+                        f={}
+                        for i in range(len(nums)):
+                            diff = target - i
+                            if diff in f:
+                                ans.append(f[diff])
+                                ans.append(i)
+                                return ans
+                            f[nums[i]]=i
+                        return -1
+                    
+            </code>
+        </div>
+    
+        <script src="cc.js"></script> <!-- Linking JavaScript -->
+    </article>
+
 </body>
 </html>

@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.box {
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 80%;
+    overflow-x: auto;
+}
+
+.kv {
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 40%;
+    overflow-x: auto;
+}
+
+.kv table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.kv thead {
+    background: #28a745;
+    color: white;
+}
+
+.kv thead th {
+    padding: 8px;
+}
+
+.kv td, .kv th {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.kv tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.kv tbody tr:hover {
+    background: #f1f1f1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background: #007bff;
+    color: white;
+}
+
+thead th {
+    padding: 10px;
+    cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tbody tr:hover {
+    background: #ddd;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.btn-container {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+.btn-java {
+    background-color: #f89820;
+}
+
+.btn-python {
+    background-color: #3776ab;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.code-box {
+    display: none;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+article {
+    background: white;
+    padding: 20px;
+    margin: 30px auto;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: left;
+}
+
+article h1 {
+    color: #333;
+    text-align: center;
+}
+
+article p {
+    font-size: 16px;
+    color: #555;
+}
