@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorials</title>
+    <link rel="stylesheet" href="cc.css">
+</head>
+<body>
+    
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>S.No</th> -->
+                     <th>Rating</th>
+                    <th>Problem Name</th>
+                    <th>Problem Link</th>
+                    <th>Solution</th>
+                    <th>Contest Name</th>
+                    <th>Contest Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td>2</td> -->
+                     <td>1118</td>
+                     <td>Delete Not Equal</td>
+                     <td><a href="https://www.codechef.com/problems/DELNQ?tab=statement">DNE</a></td>
+                     <td><a href="#DNE">DNE sol</a></td>
+                     <td>Starters 167</td>
+                     <td>01-01-2025</td>
+                    </tr>
+                    <tr>
+                    <td>1520</td>
+                    <td>Lottery Tickets</td>
+                    <td><a href="https://www.codechef.com/problems/LOTTERYTICK">LT</a></td>
+                    <td><a href="#LT">LT sol</a></td>
+                    <td>Starters 167</td>
+                    <td>01-01-2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <article id="DNE">
+        <h1>Delete Not Equal</h1>
+        <p>This problem says that there is a binary string and we need to print minimum length possible for the string after performing an operation any number of times. Operation is we can choose any index i and we can delete element present at i or i+1. Let us take an example.</p><br>
+
+        <p>Conider a string "100010", This string is of length 6.</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>I will select character at index 0. If I select character at index 0 then character at 1 is not equal. So I can remove either '1' or '0'. Here I will remove character at index 1 then my string becomes </p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Now I will select character at index 0. If I select character at index 0 then character at 1 is not equal. So I can remove either '1' or '0'. Here I will remove character at index 1 then my string becomes</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Again I will select character at index 0. If I select character at index 0 then character at 1 is not equal. So I can remove either '1' or '0'. Here I will remove character at index 1 then my string becomes</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Here If select character at index 0 then I can not remove this character and adjacent character. So I will select index 1. If I select 1 then I can remove either '1' or '0'.Here I will remove character at index 1 then my string becomes</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Now the string length is 2 and both elements are not equal. I can select any index and remove it. I remove element at index 0. After removing my string length will be 1 and I cannot perform any operations.</p><br>
+        <br>
+
+        <p>In this problem we need to check only two cases. First case is what if the string do not have either '1' or '0'. If my string is "00000" then I cannot select any index and perform this operation because there are no not equal adjacent elements.</p><br>
+        <p>Second case is what if my string contains 1 different character like "10000". If the string is like this I will select this element index and perform operation.</p><br>
+        <p>I simply count '0' and '1' in string. If either of zeroes or ones count is zero then I will print length of string otherwise I will print 1.</p><br>
+        <p>Time Complexity: O(n)</p><br>
+        <p>Space Complexity: O(1)</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="java-code" class="code-box">
+            <strong>Java Code:</strong>
+            <code>
+    import java.util.*;
+    public class Main {
+        public static void main(String[] args) {
+            Scanner sc=new Scanner(System.in);
+            int t=sc.nextInt();
+            while(t-->0){
+                int n=sc.nextInt();
+                String s=sc.next();
+                int zeroes=0;
+                int ones=0;
+                for(int i=0;i&lt;n;i++){
+                    if(s.charAt(i)=='0'){
+                        zeroes++;
+                    }else{
+                        ones++;
+                    }
+                }
+                if(zeroes==0 || ones==0){
+                    System.out.println(n);
+                }else{
+                    System.out.println(1);
+                }
+            }
+        }
+    }
+            </code>
+        </div>
+    
+        <div id="python-code" class="code-box">
+            <strong>Python Code:</strong>
+            <code>
+                # cook your dish here
+                for _ in range(int(input())):
+                    n=int(input())
+                    s=input()
+                    z=0
+                    o=0
+                    for i in s:
+                        if i=='0':
+                            z+=1
+                        else:
+                            o+=1
+                    if z==0 or o==0:
+                        print(n)
+                    else:
+                        print(1)
+                    
+            </code>
+        </div>
+    
+        <script src="script.js"></script> <!-- Linking JavaScript -->
+    </article>
+    <article id="LT">
+        <h1>Lottery Tickets</h1>
+        <p>This problem says that there are N lottery tickets with number A[i] on it. All numbers are distinct. Chef bought a lottery ticket with a number A[i] on it and chef will win if the person is closest to a number 'X'. We need to find how many numbers 'X' will satisfy so that chef will win. Let me explain with an example.</p> <br>
+        <p>Let us consider there are 3 lottery tickets with numbers [5, 1, 12] on it. Chef will take a ticket with number 5 on it because the first ticket number is 5.</p> <br>
+        <p>I will take a variable 'count' to count possible values of X. count=0</p><br>
+        <p>Let us start by taking X as 1. When X is 1 then chef wont win because there is a person with ticket having number 1 on it. My count remains same.</p><br>
+        <p>count = 0</p><br>
+        <p>Now we take X = 2. When X is 2 then the closest number is 1 because absolute differnce between 2 and 1 is 1 and absolute differnce between chef's number 5 and 1 is 4. So chef won't win. Here I avoid 12 because we know that 12 is not even close to 1.</p><br>
+        <p>count = 0</p><br>
+        <p>Now we take X = 3. When X is 3 then the absolute difference between 3 and 1 is 2 and also absolute differnce between chef's number 5 and 3 is 2 which is equal to person with lottery number 1. So we can consider 3 as winning case. I will increase my count.</p><br>
+        <p>count = count + 1 => count = 1.</p><br>
+        <p>Now we take X = 4. When X is 4 then the absolute difference between 4 and 1 is 3 and also absolute differnce between chef's number 5 and 4 is 1 which indicates that chef's ticket is closer to X. So we can consider 4 as winning case. I will increase my count.</p>
+        <p>count = count + 1 => count = 2.</p><br>
+        <p>If X = 5 then we can say that chef is the winner. So, I will increment my count.</p><br>
+        <p>count = count + 1 => count = 3.</p><br>
+        <p>Now we take X = 6. When X is 6 then the absolute difference between 6 and 1 is 5 and also absolute differnce between chef's number 5 and 6 is 1 which indicates that chef's ticket is closer to X. So we can consider 5 as winning case. I will increase my count.</p>
+        <p>count = count + 1 => count = 4.</p><br>
+        <p>Now we take X = 7. When X is 7 then the absolute difference between 7 and 1 is 6 and also absolute differnce between chef's number 5 and 6 is 1 which indicates that chef's ticket is closer to X. So we can consider 6 as winning case. I will increase my count.</p>
+        <p>count = count + 1 => count = 5.</p><br>
+        <p>Now we take X = 8. As I am approaching nearer to 12 I will consider 12 and avoid 1 because 1 is no closer to X. When X is 8 then the absolute difference between 8 and 12 is 4 and also absolute differnce between chef's number 5 and 8 is 3 which indicates that chef's ticket is closer to X. So we can consider 7 as winning case. I will increase my count.</p>
+        <p>count = count + 1 => count = 6.</p><br>
+        <p>Now we take X = 9. When X is 9 then absolute difference between 9 and 12 is 3 and also absolute difference between chef's number 5 and 9 is 4 which indicates 12 is closer to X. As we increment X, We go far from chef's number. So we end here and my answer will be 6.</p><br>
+        <p>A[i] will ranges from 1 to 1000000. First I take X as chef's number and I will sort the array. I sorted array because I need to know how many numbers are there before and after chef's number. I will search for chef's number and take the index of it.</p> <br>
+        <p>If the chef's number is minimum that means it is the first element after sorting then I can say that numbers before A[0] are closer to chef's number. I need to find numbers which are closer in between A[0] and A[1]. To know numbers which are closer to A[0], I will find how many numbers are there between A[0] and A[1] which is A[1]-A[0]. Now I will divide the difference with 2 then I will get closer numbers. So my answer is</p><br>
+        <p>answer = A[0] + (( A[1] - A[0] ) / 2)</p><br>
+        <p>If the chef's number is maximum that means it is the last element after sorting then I can say that numbers after A[n-1] are closer to chef's number. Maximum possible ticket number is 1000000. So there will be 1000000-A[n-1] numbers. Also we need to how many numbers between previous element of chef's number are closer to chef's number. To know numbers which are closer to A[n-1], I will find how many numbers are there between A[n-1] and A[n-2] which is A[n-1] - A[n-2]. Now I will divide the difference with 2 then I will get closer numbers. So my answer is A[0]+((A[n - 1] - A[n - 2]) / 2). So my answer is</p><br>
+        <p>answer = 1000000 - A[n-1] + 1 + (A[n - 1] - A[n - 2])/2.</p><br>
+        <p>If the chef's number is found between index 1 and index n-2 then I need find numbers which are closer to preeceding element and numbers which are closer to succeeding element. So my answer is</p><br>
+        answer = ((A[ind] - A[ind-1])/2) + ((A[ind+1] - A[ind])/2) + 1;
+
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="java-code" class="code-box">
+            <strong>Java Code:</strong>
+            <code>
+    import java.util.*;
+    public class Main {
+        public static void main(String[] args) {
+            Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0){
+		    int n=sc.nextInt();
+		    int a[]=new int[n];
+		    for(int i=0;i&lt;n;i++){
+		        a[i]=sc.nextInt();
+		    }
+		    int x=a[0];
+		    Arrays.sort(a);
+		    int ind=-1;
+		    int l=0;
+		    int r=n-1;
+		    while(l &lt;=r){
+		        int m=(l+r)/2;
+		        if(a[m]==x){
+		            ind=m;
+		            break;
+		        }else if(a[m]>x){
+		            r=m-1;
+		        }else{
+		            l=m+1;
+		        }
+		    }
+		    if(ind==0){
+		        int z=(a[1]-a[0])/2;
+		        System.out.println(z+a[0]);
+		    }else if(ind==n-1){
+		        int z=1000000-a[ind];
+		        int y=(a[ind]-a[ind-1])/2;
+		        System.out.println(z+1+y);
+		    }else{
+		        int z=(a[ind+1]-a[ind])/2;
+		        int y=(a[ind]-a[ind-1])/2;
+		        System.out.println(z+y+1);
+		    }
+		}
+        }
+    }
+            </code>
+        </div>
+    
+        <div id="python-code" class="code-box">
+            <strong>Python Code:</strong>
+            <code>
+                # cook your dish here
+                t = int(input())
+                for _ in range(t):
+                    n = int(input())
+                    a = list(map(int, input().split()))
+                    x = a[0]
+                    a.sort()
+                    ind = -1
+                    l = 0
+                    r = n - 1
+                    while l <= r:
+                        m = (l + r) // 2
+                        if a[m] == x:
+                            ind = m
+                            break
+                        elif a[m] > x:
+                            r = m - 1
+                        else:
+                            l = m + 1
+                    if ind == 0:
+                        z = (a[1] - a[0]) // 2
+                        print(z + a[0])
+                    elif ind == n - 1:
+                        z = 1000000 - a[ind]
+                        y = (a[ind] - a[ind - 1]) // 2
+                        print(z + 1 + y)
+                    else:
+                        z = (a[ind + 1] - a[ind]) // 2
+                        y = (a[ind] - a[ind - 1]) // 2
+                        print(z + y + 1)
+                    
+            </code>
+    </div>
+    </article>
+</body>
+</html>
