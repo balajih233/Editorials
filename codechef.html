@@ -147,6 +147,7 @@
     
         <div id="java-code" class="code-box">
             <strong>Java Code:</strong>
+            <pre>
             <code>
     import java.util.*;
     public class Main {
@@ -174,28 +175,31 @@
         }
     }
             </code>
+        </pre>
         </div>
     
         <div id="python-code" class="code-box">
             <strong>Python Code:</strong>
+            <pre>
             <code>
-                # cook your dish here
-                for _ in range(int(input())):
-                    n=int(input())
-                    s=input()
-                    z=0
-                    o=0
-                    for i in s:
-                        if i=='0':
-                            z+=1
-                        else:
-                            o+=1
-                    if z==0 or o==0:
-                        print(n)
-                    else:
-                        print(1)
+
+for _ in range(int(input())):
+    n=int(input())
+    s=input()
+    z=0
+    o=0
+    for i in s:
+        if i=='0':
+            z+=1
+        else:
+            o+=1
+        if z==0 or o==0:
+            print(n)
+        else:
+            print(1)
                     
             </code>
+        </pre>
         </div>
     
         <script src="cc.js"></script> <!-- Linking JavaScript -->
@@ -235,8 +239,9 @@
             <button class="btn btn-python" onclick="showCode('python')">Python</button>
         </div>
     
-        <div id="java-code" class="code-box">
+        <div id="LT-java" class="code-box">
             <strong>Java Code:</strong>
+            <pre>
             <code>
     import java.util.*;
     public class Main {
@@ -281,43 +286,46 @@
         }
     }
             </code>
+        </pre>
         </div>
     
-        <div id="python-code" class="code-box">
+        <div id="LT-py" class="code-box">
             <strong>Python Code:</strong>
+            <pre>
             <code>
                 # cook your dish here
-                t = int(input())
-                for _ in range(t):
-                    n = int(input())
-                    a = list(map(int, input().split()))
-                    x = a[0]
-                    a.sort()
-                    ind = -1
-                    l = 0
-                    r = n - 1
-                    while l <= r:
-                        m = (l + r) // 2
-                        if a[m] == x:
-                            ind = m
-                            break
-                        elif a[m] > x:
-                            r = m - 1
-                        else:
-                            l = m + 1
-                    if ind == 0:
-                        z = (a[1] - a[0]) // 2
-                        print(z + a[0])
-                    elif ind == n - 1:
-                        z = 1000000 - a[ind]
-                        y = (a[ind] - a[ind - 1]) // 2
-                        print(z + 1 + y)
-                    else:
-                        z = (a[ind + 1] - a[ind]) // 2
-                        y = (a[ind] - a[ind - 1]) // 2
-                        print(z + y + 1)
+t = int(input())                
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    x = a[0]
+    a.sort()
+    ind = -1
+    l = 0
+    r = n - 1
+    while l &lt;= r:
+        m = (l + r) // 2
+        if a[m] == x:
+            ind = m
+            break
+        elif a[m] > x:
+            r = m - 1
+        else:
+            l = m + 1
+    if ind == 0:
+        z = (a[1] - a[0]) // 2
+        print(z + a[0])
+    elif ind == n - 1:
+        z = 1000000 - a[ind]
+        y = (a[ind] - a[ind - 1]) // 2
+        print(z + 1 + y)
+    else:
+        z = (a[ind + 1] - a[ind]) // 2
+        y = (a[ind] - a[ind - 1]) // 2
+    print(z + y + 1)
                     
             </code>
+        </pre>
     </div>
     </article>
 </body>

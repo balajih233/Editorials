@@ -28,6 +28,13 @@
                      <td><a href="#TS">TS sol</a></td>
                      <td>Easy</td>                
                 </tr>
+                <tr>
+                    <td>3446</td>
+                     <td>Sort Matrix by Diagonals</td>
+                     <td><a href="https://leetcode.com/problems/sort-matrix-by-diagonals/description/">SMD</a></td>
+                     <td><a href="#SMD">SMD sol</a></td>
+                     <td>Medium</td>  
+                </tr>
             </tbody>
         </table>
     </div>
@@ -133,47 +140,283 @@
     
         <div id="java-code" class="code-box">
             <strong>Java Code:</strong>
+            <pre>
             <code>
-                class Solution {
-                    public int[] twoSum(int[] nums, int target) {
-                        int ans[]=new int[2];
-                        HashMap&lt;Integer,Integer> x=new HashMap&lt;>();
-                        for(int i=0;i&lt;nums.length;i++){
-                            int diff = target - nums[i];
-                            if(x.containsKey(diff)){
-                                ans[0] = x.get(diff);
-                                ans[1] = i;
-                                return ans;
-                            }
-                            x.put(nums[i],i);
-                        }
-                        return -1;
-                    }
-                }
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int ans[]=new int[2];
+        HashMap&lt;Integer,Integer> x=new HashMap&lt;>();
+        for(int i=0;i&lt;nums.length;i++){
+            int diff = target - nums[i];
+            if(x.containsKey(diff)){
+                ans[0] = x.get(diff);
+                ans[1] = i;
+                return ans;
+            }
+            x.put(nums[i],i);
+        }
+         return -1;
+    }
+}                
             </code>
+            </pre>
         </div>
     
         <div id="python-code" class="code-box">
             <strong>Python Code:</strong>
+            <pre>
             <code>
-                class Solution:
-                    def twoSum(self, nums: List[int], target: int) -> List[int]:
-                        ans=[]
-                        f={}
-                        for i in range(len(nums)):
-                            diff = target - i
-                            if diff in f:
-                                ans.append(f[diff])
-                                ans.append(i)
-                                return ans
-                            f[nums[i]]=i
-                        return -1
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        ans=[]
+        f={}
+        for i in range(len(nums)):
+            diff = target - i
+            if diff in f:
+                ans.append(f[diff])
+                ans.append(i)
+                return ans
+            f[nums[i]]=i
+    return -1                
                     
             </code>
+        </pre>
         </div>
     
-        <script src="cc.js"></script> <!-- Linking JavaScript -->
     </article>
+    <article id="SMD">
+        <h1>Sort Matrix by Diagonals</h1>
+        <p>There is a n*n square matrix. We need to return matrix after performing two operations.</p>
+        <p>1. Diagonals in bottom-left triangle including middle diagonal should be sorted in descending order</p>
+        <p>2. Diagonals in top-right triangle should be sorted in ascending order. </p>
+        <p>Let us take an example by taking 3*3 square matrix.</p>
+        <div class="matrix">
+            <div class="row">
+                <div class="cell" id="blt">1</div><div class="cell" id="tlt">11</div><div class="cell" id="tltc">3</div>
+            </div>
+            <div class="row">
+                <div class="cell" id="bltc">4</div><div class="cell" id="blt">5</div><div class="cell" id="tlt">6</div>
+            </div>
+            <div class="row">
+                <div class="cell" id="blty">7</div><div class="cell" id="bltc">8</div><div class="cell" id="blt">9</div>
+            </div>
+        </div>
+        <p>Element which are in green, red, orange color should be sorted in decreasing orde and elements which are in yellow,violet should be sorted in ascending order. Answer should be below matrix.</p>
+        <div class="matrix">
+            <div class="row">
+                <div class="cell" id="blt">9</div><div class="cell" id="tlt">6</div><div class="cell" id="tltc">3</div>
+            </div>
+            <div class="row">
+                <div class="cell" id="bltc">8</div><div class="cell" id="blt">5</div><div class="cell" id="tlt">11</div>
+            </div>
+            <div class="row">
+                <div class="cell" id="blty">7</div><div class="cell" id="bltc">4</div><div class="cell" id="blt">1</div>
+            </div>
+        </div>
+        <p>To get required matrix, First we need traverse in matrix diagonally. Let us divide the matrix by two, One is bottom-left and other is top-right triangle.</p>
+        <div class="matrix">
+            <p>&ensp;&ensp;&ensp;&ensp;0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;2</p>
+            <div class="row">
+                0<div class="cell" id="blt">1</div></div>
+            </div>
+            <div class="row">
+                1<div class="cell" id="bltc">4</div><div class="cell" id="blt">5</div></div>
+            </div>
+            <div class="row">
+                2<div class="cell" id="blty">7</div><div class="cell" id="bltc">8</div><div class="cell" id="blt">9</div>
+            </div>
+        </div>
+        <br>
+        <p>First consider bottom-left triangle. In this I need to arrange matrix in decreasing order. I will take an ArrayList and store diagonal elements. I will sort them and modify my matrix by traversing from last through ArrayList.</p><br>
+        <p>I will place my row index at 0 and coloumn index at 0. I will add element and increment row index and coloumn index. So, element at row index 0 and coloumn index 0 is 1. I will add 1 and increment row index and coloumn index. Element at row index 1 and coloumn index 1 is 5. So I will add 5 to it. I will increment row index and coloumn index. Element at row index 2 and coloumn index 2 is 9. So I will add 9 to ArrayList.</p>
+        <p> row->0,coulumn->0 element at 0,0 is 1. My ArrayList is [1]</p>
+        <p> row->1,coulumn->1 element at 1,1 is 5. My ArrayList is [1,5]</p>
+        <p> row->2,coulumn->2 element at 2,2 is 9. My ArrayList is [1,5,9]</p>
+        <p>After sorting my ArrayList becomes [1,5,9].</p>
+        <p>I will start from last element and modify my matrix. Then my matrix becomes </p>
+        <div class="matrix">
+            <p>&ensp;&ensp;&ensp;&ensp;0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;2</p>
+            <div class="row">
+                0<div class="cell" id="blt">9</div></div>
+            </div>
+            <div class="row">
+                1<div class="cell" id="bltc">4</div><div class="cell" id="blt">5</div></div>
+            </div>
+            <div class="row">
+                2<div class="cell" id="blty">7</div><div class="cell" id="bltc">8</div><div class="cell" id="blt">1</div>
+            </div>
+        </div><br>
+        <p>Now I will place my row index at 1 and coloumn index at 0. I will add element and increment row index and coloumn index. Element at row index 1 and coloumn index 0 is 4. So I will add 4 to it. I will increment row index and coloumn index. Element at row index 2 and coloumn index 1 is 8. I will add 8 to ArrayList. As I reached last of my matrix I will end.</p>
+        <p>row->1 coloumn->0 element at 1,0 is 4. My ArrayList is [4].</p>
+        <p>row->2 coloumn->1 element at 2,1 is 8. My ArrayList is [4,8].</p>
+        <p>After sorting my ArrayList becomes [4,8].</p>
+        <p>I will start from last element and modify my matrix. Then my matrix becomes </p>
+        <div class="matrix">
+            <p>&ensp;&ensp;&ensp;&ensp;0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;2</p>
+            <div class="row">
+                0<div class="cell" id="blt">9</div></div>
+            </div>
+            <div class="row">
+                1<div class="cell" id="bltc">8</div><div class="cell" id="blt">5</div></div>
+            </div>
+            <div class="row">
+                2<div class="cell" id="blty">7</div><div class="cell" id="bltc">4</div><div class="cell" id="blt">1</div>
+            </div>
+        </div><br>
+        <p>7 is the only element in diagonal so no modification required</p>
+        <div class="matrix">
+            <p>&ensp;&ensp;&ensp;&ensp;0&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;2</p>
+            <div class="row">
+                0<div class="cell" id="blt">9</div></div>
+            </div>
+            <div class="row">
+                1<div class="cell" id="bltc">8</div><div class="cell" id="blt">5</div></div>
+            </div>
+            <div class="row">
+                2<div class="cell" id="blty">7</div><div class="cell" id="bltc">4</div><div class="cell" id="blt">1</div>
+            </div>
+        </div><br>
+        <div class="matrix">
+            <div class="row">
+                <div class="cell" id="tlt">6</div><div class="cell" id="tltc">3</div>
+            </div>
+            <div class="row">
+                &ensp;&ensp; &ensp; &ensp; &ensp;<div class="cell" id="tlt">11</div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="smd-java" class="code-box">
+            <strong>Java Code:</strong>
+            <pre>
+            <code>
+                class Solution {
+                    public int[][] sortMatrix(int[][] grid) {
+                        int mat[][]=new int[grid.length][grid[0].length];
+                        int r=grid.length-1;
+                        int c=0;
+                        while(r>=0 && c&lt;grid[0].length){
+                            int i=r;
+                            int j=0;
+                            List&lt;Integer>x=new ArrayList&lt;>();
+                            while(i&lt;grid.length && j&lt;=c){
+                                x.add(grid[i][j]);
+                                i++;
+                                j++;
+                            }
+                            Collections.sort(x);
+                            i=r;
+                            j=0;
+                            int k=x.size()-1;
+                            while(i&lt;grid.length && j&lt;=c){
+                                mat[i][j]=x.get(k--);
+                                i++;
+                                j++;
+                            }
+                            r--;
+                            c++;
+                        }
+                        r=0;
+                        c=grid[0].length-1;
+                        while(r&lt;grid.length && c>=0){
+                            int i=0;
+                            int j=c;
+                            List&lt;Integer>x=new ArrayList&lt;>();
+                            while(i&lt;=r && j&lt;grid[0].length){
+
+                                x.add(grid[i][j]);
+                                i++;
+                                j++;
+                            }
+                            Collections.sort(x);
+                            i=0;
+                            j=c;
+                            int k=0;
+                            while(i&=r && j&lt;grid[0].length){
+                                mat[i][j]=x.get(k++);
+                                i++;
+                                j++;
+                            }
+                            r++;
+                            c--;
+                            if(r==grid.length-1) break;
+                        }
+                        return mat;
+                    }
+                }
+            </code>
+        </pre>
+        </div>
+    
+        <div id="smd-py" class="code-box">
+            <strong>Python Code:</strong>
+            <pre>
+            <code>
+class Solution:
+    def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
+        mat = [[0] * len(grid[0]) for _ in range(len(grid))]
+        r = len(grid) - 1
+        c = 0
+                
+        while r >= 0 and c &lt; len(grid[0]):
+            i = r
+            j = 0
+            x = []
+            while i &lt; len(grid) and j &lt;= c:
+                x.append(grid[i][j])
+                i += 1
+                j += 1
+            x.sort()
+            i = r
+            j = 0
+            k = len(x) - 1
+            while i &lt; len(grid) and j &lt;= c:
+                mat[i][j] = x[k]
+                k -= 1
+                i += 1
+                j += 1
+            r -= 1
+            c += 1
+        
+        r = 0
+        c = len(grid[0]) - 1
+        while r &lt; len(grid) and c >= 0:
+            i = 0
+            j = c
+            x = []
+            while i &lt;= r and j &lt;len(grid[0]):
+                x.append(grid[i][j])
+                i += 1
+                j += 1
+            x.sort()
+            i = 0
+            j = c
+            k = 0
+            while i &lt;= r and j &lt;len(grid[0]):
+                mat[i][j] = x[k]
+                k += 1
+                i += 1
+                j += 1
+            r += 1
+            c -= 1
+            if r == len(grid) - 1:
+                break
+        
+        return mat               
+                
+                    
+            </code>
+        </pre>
+        </div>
+        
+    </article>
+    <script src="lc.js"></script> <!-- Linking JavaScript -->
 
 </body>
 </html>

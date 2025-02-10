@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeForces</title>
+    <link rel="stylesheet" href="cf.css">
+</head>
+<body>
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>S.No</th> -->
+                    <th>Problem Name</th>
+                    <th>Problem Link</th>
+                    <th>Solution</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td>2</td> -->
+                     <td>Skibidus and Amog'u</td>
+                     <td><a href="https://codeforces.com/contest/2065/problem/A">SAA</a></td>
+                     <td><a href="#SAA">SAA sol</a></td> 
+                </tr>
+                <tr>
+                    <td>Skibidus and Ohio</td>
+                    <td><a href="https://codeforces.com/contest/2065/problem/B">SAO</a></td>
+                    <td><a href="#SAO">SAO sol</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <article id="SAA">
+        <h1>Skibidus and Amog'u</h1>
+        <p>This problem says that there is a person lands on a planet and the people in planet speaks different language. In that planet there are two nouns. In singular, String ends with 'us' and in plural ends with 'i'. Here there given a string in singular and need to convert in plural.</p>
+        <p>For example, There is a string "prewous". Then answer should be "prewoi".</p>
+        <p>For this problem, I will traverse until length-2 because I need to replace 'us' with 'i' and I will concat 'i' to last.</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="saa-java" class="code-box">
+            <strong>Java Code:</strong>
+            <pre>
+            <code>
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            String s=sc.next();
+            String ans="";
+            for(int i=0;i&lt;s.length-2;i++){
+                ans+=s.charAt(i);
+            }
+            System.out.println(ans+"i");
+        }
+    }
+}
+            </code>
+        </pre>
+        </div>
+    
+        <div id="saa-py" class="code-box">
+            <strong>Python Code:</strong>
+            <pre>
+            <code>
+for _ in range(int(input())): 
+    s=input()               
+    x=''
+    for i in range(0,len(s)-2):
+        x+=s[i]
+    print(x+'i')
+                
+            </code>
+        </pre>     
+    </article>
+    <article id="SAO">
+        <h1>Skibidus and Ohio</h1>
+        <p>This problem says that there is a string and we can replace character with any character and remove character if adjacent charecters are equal and return minimum string possible. For example, There is a string "baa". Here character at 1 and character at 2 are equal. So I will replace character at 2 with 'b' and remove character at 1 then my string becomes "bb". Both the characters are same then I will remove one and replace one. My string ends with length of 1</p>
+        <p>My length will change only if adjacent characters are equal. So I will check whether there exist adjacent characters are equal. If there exist then I make flag 1. If my flag is 1 then answer is 1 otherwise answer is length of string.</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="sao-java" class="code-box">
+            <strong>Java Code:</strong>
+            <pre>
+            <code>
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            String s=sc.next();
+            int f=0;
+            for(int i=0;i&lt;s.length()-1;i++){
+                if(s.charAt(i)==s.charAt(i+1)){
+                    f=1;
+                    break;
+                }
+            }
+            (f==1)?System.out.println(1):System.out.println(s.length());
+        }
+    }
+}
+            </code>
+        </pre>
+        </div>
+    
+        <div id="sao-py" class="code-box">
+            <strong>Python Code:</strong>
+            <pre>
+            <code>
+for _ in range(int(input())):
+    s=input()
+    f=0
+    for i in range(0,len(s)-1):
+        if s[i]==s[i+1]:
+            f=1
+            break
+    if f==1:
+        print(1)
+    else:
+        print(len(s))
+                
+            </code>
+        </pre>     
+    </article>
+    <script src="cf.js"></script>
+</body>
+</html>
