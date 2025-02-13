@@ -29,6 +29,14 @@
                      <td>Easy</td>                
                 </tr>
                 <tr>
+                    <!-- <td>2</td> -->
+                     <td>9</td>
+                     <td>Palindrome Number</td>
+                     <td><a href="https://leetcode.com/problems/palindrome-number/description/">PN</a></td>
+                     <td><a href="#PN">PN sol</a></td>
+                     <td>Easy</td>                
+                </tr>
+                <tr>
                     <td>3446</td>
                      <td>Sort Matrix by Diagonals</td>
                      <td><a href="https://leetcode.com/problems/sort-matrix-by-diagonals/description/">SMD</a></td>
@@ -183,6 +191,148 @@ class Solution:
         </pre>
         </div>
     
+    </article>
+    <article id="PN">
+        <h1>Palindrome Number</h1>
+        <P>There is an integer x and we need to check whether it is Palindrome or not. A Palindrome number is a number which reads same from left to right.</P>
+        <p>Take an example x=147741. If I reverse the number then it remains same. If the number is 451 and if I reverse it then it becomes 154 which is not equal to given integer. If the number is negative then it is not a Palindrome. For example, x=-123. If I reverse it then it becomes 123- which is not equal to given number. We can solve this problem in different methods.</p>
+        <h2>Approach-1</h2>
+        <p>In this approach, I will store integer x in another variable. If the value is less than 0 then I will return false. If the value is greater than or equal to zero and less than 10 then I will return true. Otherwise, I store the value in another variable. Now I will reverse the number. If reveresed number is equal to original number then I will return true otherwise I will return false.</p>
+        <p>I copy the number into a variable called originalNumber. I take a reversedNumber variable and assign 0 to it. To perform this, I will calculate remainder and multiply reversedNumber with 10 and add remainder to it. I will divide x with 10. I will perform this operation until my given number 'x' is equal to zero.</p>
+
+        <p>Let us take an example, x = 4554. I will copy x into variable originalNumber and initialize reversedNumber as 0.</p>
+        <ul><li>x = 4554</li>
+        <li>originalNumber = x = 4554.</li>
+        <li>reversedNumber = 0.</li>
+        </ul>
+        <p>Now I will take remainder of x. To know remainder, I will perform modulo operation to x.</p>
+        <ul><li>rem = x % 10 = 4554 % 10 = 4.</li></ul>
+        <p>Now I will multiply reversedNumber with 10 and add remainder to it. I store it in reversedNumber.</p>
+        <ul><li>reversedNumber = (reversedNumber * 10) + rem => (0 * 10) + 4 = 4.</li>
+        <li>reversedNumber becomes 4.</li>
+        </ul>
+        <p>I will divide integer x with 10 then x becomes 455.</p>
+        <ul><li>x= 4554 / 10 = 455.</li></ul>
+        <p>My x is not zero so, I will repeat the above procedure.</p>
+        
+        <p>Now I will take remainder of x. To know remainder, I will perform modulo operation to x.</p>
+        <ul><li>rem = x % 10 = 455 % 10 = 5.</li></ul>
+        <p>Now I will multiply reversedNumber with 10 and add remainder to it. I store it in reversedNumber.</p>
+        <ul><li>reversedNumber = (reversedNumber * 10) + rem => (4 * 10) + 5 = 40 + 5 = 45.</li>
+        <li>reversedNumber becomes 45.</li>
+        </ul>
+        <p>I will divide integer x with 10 then x becomes 45.</p>
+        <ul><li>x= 455 / 10 = 45.</li></ul>
+        <p>My x is not zero so, I will repeat the above procedure.</p>
+        <p>Now I will take remainder of x. To know remainder, I will perform modulo operation to x.</p>
+        <ul><li>rem = x % 10 = 45 % 10 = 5.</li></ul>
+        <p>Now I will multiply reversedNumber with 10 and add remainder to it. I store it in reversedNumber.</p>
+        <ul><li>reversedNumber = (reversedNumber * 10) + rem => (45 * 10) + 5 = 450 + 5 = 455.</li>
+        <li>reversedNumber becomes 455.</li>
+        </ul>
+        <p>I will divide integer x with 10 then x becomes 4.</p>
+        <ul><li>x= 45 / 10 = 4.</li></ul>
+        <p>My x is not zero so, I will repeat the above procedure.</p>
+        <p>Now I will take remainder of x. To know remainder, I will perform modulo operation to x.</p>
+        <ul><li>rem = x % 10 = 4 % 10 = 4.</li></ul>
+        <p>Now I will multiply reversedNumber with 10 and add remainder to it. I store it in reversedNumber.</p>
+        <ul><li>reversedNumber = (reversedNumber * 10) + rem => (455 * 10) + 4 = 4550 + 4 = 4554.</li>
+        <li>reversedNumber becomes 455.</li>
+        </ul>
+        <p>I will divide integer x with 10 then x becomes 4.</p>
+        <ul><li>x= 45 / 10 = 4.</li></ul>
+        <p>My x is zero so, I will check whether my reversedNumber is equal to originalNumber reversedNumber is 4554 and originalNumber is 4554 this indicates both are equal. Hence given number is a Palindrome number.</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+        <div id="pn-java" class="code-box">
+            <strong>Java Code:</strong>
+            <pre>
+            <code>
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x &lt; 0) return false;
+        if(x &lt; 10) return true;
+        int originalNumber = x;
+        int reversedNumber = 0;
+        while(x!=0){
+            int rem = x%10;
+            reversedNumber = (reversedNumber * 10) + rem;
+            x = x / 10;
+        }
+        if(originalNumber == reversedNumber) return true;
+        return false;
+    }
+}
+            </code>
+        </pre>
+        </div>
+        <div id="pn-py" class="code-box">
+            <strong>Python Code:</strong>
+            <pre>
+            <code>
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x &lt; 0:
+            return False
+        if x &lt; 10:
+            return True               
+        originalNumber = x
+        reversedNumber = 0
+        while x!=0:
+            rem = x%10
+            reversedNumber = (reversedNumber * 10) + rem
+            x = x//10
+        if originalNumber == reversedNumber:
+            return True
+        return False            
+            </code>
+        </pre>
+        </div>
+    <h2>Approach-2</h2>
+    <p>In this approach, I will typecast integer element to string and reverse the string. I will check whether reversed string is equal to original string.</p>
+    <div class="btn-container">
+        <button class="btn btn-java" onclick="showCode('java')">Java</button>
+        <button class="btn btn-python" onclick="showCode('python')">Python</button>
+    </div>
+    <div id="pn1-java" class="code-box">
+        <strong>Java Code:</strong>
+        <pre>
+        <code>
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x &lt; 0) return false;
+        if(x &lt; 10) return true;
+        String s=Integer.toString(x);
+        String reverse="";
+        for(int i=0;i &lt; s.length();i++){
+            reverse = s.charAt(i) + reverse;
+        }
+        return s.equals(reverse);
+    }
+}
+        </code>
+    </pre>
+    </div>
+    <div id="pn1-py" class="code-box">
+        <strong>Python Code:</strong>
+        <pre>
+        <code>
+class Solution:
+def isPalindrome(self, x: int) -> bool:
+    if x &lt; 0:
+        return False
+    if x &lt; 10:
+        return True    
+    s=str(x)           
+    reverse=""
+    for i in s:
+        reverse = i + reverse
+    return reverse == s
+        </code>
+    </pre>
+    </div>
     </article>
     <article id="SMD">
         <h1>Sort Matrix by Diagonals</h1>
@@ -362,6 +512,7 @@ class Solution:
     def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
         mat = [[0] * len(grid[0]) for _ in range(len(grid))]
         r = len(grid) - 1
+
         c = 0
                 
         while r >= 0 and c &lt; len(grid[0]):

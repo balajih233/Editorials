@@ -170,3 +170,14 @@ article {
 #tltc{
     background-color: yellow;
 }
+h2{
+    color: #007BFF;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+}
+
+li{
+    padding:0.51rem;
+}
