@@ -11,7 +11,6 @@
         <table>
             <thead>
                 <tr>
-                    <!-- <th>S.No</th> -->
                     <th>Problem Name</th>
                     <th>Problem Link</th>
                     <th>Solution</th>
@@ -20,7 +19,6 @@
             </thead>
             <tbody>
                 <tr>
-                    <!-- <td>2</td> -->
                      <td>Skibidus and Amog'u</td>
                      <td><a href="https://codeforces.com/contest/2065/problem/A">SAA</a></td>
                      <td><a href="#SAA">SAA sol</a></td> 
@@ -29,6 +27,10 @@
                     <td>Skibidus and Ohio</td>
                     <td><a href="https://codeforces.com/contest/2065/problem/B">SAO</a></td>
                     <td><a href="#SAO">SAO sol</a></td>
+                </tr>
+                <tr><td>Watermelon</td>
+                <td><a href="https://codeforces.com/problemset/problem/4/A">WM</a></td>
+                <td><a href="#WM">WM sol</a></td>
                 </tr>
             </tbody>
         </table>
@@ -131,6 +133,50 @@ for _ in range(int(input())):
                 
             </code>
         </pre>     
+    </article>
+    <article id="WM">
+        <h1>Watermelon</h1>
+        <p>This problem says that there is a watermelon with 'w' kilos and two friends need to cut the watermelon into two even pieces. They need to know whether it is possible to cut the weight of watermelon into two parts with even weights.</p>
+        <p>For example, Let us take a number 6. We can divide it into two parts of weight 2 and 4. Simply we need to check whether we need to sum up two even numbers to get weight of watermelon.</p>
+        <p>We can say if the weight is odd then we cannot sum with two even numbers and also if weight of watermelon is 2 then we cannot divide it into two even pieces. One possible division is 1 and 1 which are odd.</p>
+        <p>I will print "yes" if the given weight is greater than 2 and it is a even number otherwise I will print "no".</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+    
+        <div id="wm-java" class="code-box">
+            <strong>Java Code:</strong>
+            <pre>
+            <code>
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        if(n%2==0 && n>2){
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+    }
+}
+            </code>
+        </pre>
+        </div>
+    
+        <div id="wm-py" class="code-box">
+            <strong>Python Code:</strong>
+            <pre>
+            <code>
+for _ in range(int(input())):
+    n=int(input())
+    if n>2 and n%2==0:
+        print("Yes")
+    else:
+        print("No")
+                
+            </code>
     </article>
     <script src="cf.js"></script>
 </body>

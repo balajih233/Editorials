@@ -21,7 +21,6 @@
             </thead>
             <tbody>
                 <tr>
-                    <!-- <td>2</td> -->
                      <td>1</td>
                      <td>Two Sum</td>
                      <td><a href="https://leetcode.com/problems/two-sum/description/">TS</a></td>
@@ -29,11 +28,24 @@
                      <td>Easy</td>                
                 </tr>
                 <tr>
-                    <!-- <td>2</td> -->
                      <td>9</td>
                      <td>Palindrome Number</td>
                      <td><a href="https://leetcode.com/problems/palindrome-number/description/">PN</a></td>
                      <td><a href="#PN">PN sol</a></td>
+                     <td>Easy</td>                
+                </tr>
+                <tr>
+                     <td>202</td>
+                     <td>Happy Number</td>
+                     <td><a href="https://leetcode.com/problems/happy-number/description/">HN</a></td>
+                     <td><a href="#HN">HN sol</a></td>
+                     <td>Easy</td>                
+                </tr>
+                <tr>
+                     <td>258</td>
+                     <td>Add Digits</td>
+                     <td><a href="https://leetcode.com/problems/add-digits/">AD</a></td>
+                     <td><a href="#AD">AD sol</a></td>
                      <td>Easy</td>                
                 </tr>
                 <tr>
@@ -333,6 +345,122 @@ def isPalindrome(self, x: int) -> bool:
         </code>
     </pre>
     </div>
+    </article>
+    <article id="HN">
+    <h1>Happy Number</h1>
+    <p>A number is said to be happy if sum of squares of digits is equal to 1. The process must be repeated until the number equal to 1.</p>
+    <p>Consider a number num = 19.</p>
+    <ul><li>(1*1) + (9*9) = 82</li>
+        <li>(8*8) + (2*2) = 68</li>
+        <li>(6*6) + (8*8) = 100</li>
+        <li>(1*1) + (0*0) + (0*0) = 1</li>
+    </ul>
+    <p>Here num is equal to 1. Hence number 19 is a happy number.</p>
+    <p>In this problem, I will use recursion. I will do recursion until my num comes to single digit. If the single digit is equal to 1 or 7 then the number is happy-number and I will return true. Otherwise I will return false.</p>
+    <div class="btn-container">
+        <button class="btn btn-java" onclick="showCode('java')">Java</button>
+        <button class="btn btn-python" onclick="showCode('python')">Python</button>
+    </div>
+
+    <div id="hn-java" class="code-box">
+        <strong>Java Code:</strong>
+        <pre>
+        <code>
+class Solution {
+    public boolean isHappy(int n) {
+        int sum=0;
+        while(n!=0){
+            int rem = n % 10;
+            sum += (rem * rem);
+            n = n /10;
+        }
+        n=sum;
+        if(n==1 || n==7) return true;
+        else if(n>10) return isHappy(n);
+        else return false;
+    }
+}                
+        </code>
+        </pre>
+    </div>
+
+    <div id="hn-py" class="code-box">
+        <strong>Python Code:</strong>
+        <pre>
+        <code>
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        sum=0
+        while n!=0:
+            rem = n % 10
+            sum += (rem * rem)
+            n = n // 10
+        n=sum
+        if n==1 or n==7:
+            return True
+        elif n>=10:
+            return isHappy(n)
+        else:
+            return False           
+                
+        </code>
+    </pre>
+    </div>
+
+
+    </article>
+    <article id="AD">
+        <h1>Add Digits</h1>
+        <p>This problem is similar to happy number. We need to sum up the digits in a number until it becomes single digit.</p>
+        <p>Consider an example number num=654</p>
+        <ul><li>654 -> 6 + 5 + 4 = 15</li>
+            <li>15 -> 1 + 5 =6.</li>
+        </ul>
+        <p>Here 6 is a single digit and I return this number.</p>
+        <p>I will use recursion to solve this problem. First I sum up each digit in number. I will divide the sum with 10 and check whether the quotient is 0 or not. If the quotient is 0 then I will return sum otherwise I will call my function again.</p>
+        <div class="btn-container">
+            <button class="btn btn-java" onclick="showCode('java')">Java</button>
+            <button class="btn btn-python" onclick="showCode('python')">Python</button>
+        </div>
+        <div id="ad-java" class="code-box">
+        <strong>Java Code:</strong>
+        <pre>
+        <code>
+class Solution {
+    public int addDigits(int num) {
+        int sum=0;
+        while(n!=0){
+            int rem = n % 10;
+            sum += rem;
+            n = n /10;
+        }
+        n=sum;
+        if(n / 10 == 0) return n;
+        return addDigits(n);
+    }
+}                
+        </code>
+        </pre>
+    </div>
+
+    <div id="ad-py" class="code-box">
+        <strong>Python Code:</strong>
+        <pre>
+        <code>
+class Solution:
+    def addDigits(self, n: int) -> int:
+        sum=0
+        while n!=0:
+            rem = n % 10
+            sum += rem
+            n = n // 10
+        n=sum
+        if n // 10 ==0:
+            return n
+        return addDigits(n)          
+                
+        </code>
+    </pre>
     </article>
     <article id="SMD">
         <h1>Sort Matrix by Diagonals</h1>
