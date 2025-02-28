@@ -1,5 +1,7 @@
 function showCode(language) {
     
+    document.getElementById('nnn-java').style.display = (language === 'java') ? 'block' : 'none';
+    document.getElementById('nnn-py').style.display = (language === 'python') ? 'block' : 'none';
     document.getElementById('saa-java').style.display = (language === 'java') ? 'block' : 'none';
     document.getElementById('saa-py').style.display = (language === 'python') ? 'block' : 'none';
     document.getElementById('sao-java').style.display = (language === 'java') ? 'block' : 'none';
